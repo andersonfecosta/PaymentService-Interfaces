@@ -6,10 +6,7 @@ import model.services.ContractService;
 import model.services.PaypalService;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -38,7 +35,11 @@ public class Program {
         ContractService service = new ContractService(new PaypalService());
         service.processContract(contract,months);
 
+        System.out.println();
         System.out.println("Parcelas:");
+        for (int i=0; i<service.list().size(); i++) {
+            System.out.println(service.list().get(i));
+        }
 
     }
 }

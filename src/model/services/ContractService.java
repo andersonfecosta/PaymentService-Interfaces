@@ -4,7 +4,6 @@ import model.entities.Contract;
 import model.entities.Installment;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,13 +12,13 @@ public class ContractService {
     OnlinePaymentService service;
 
     public ContractService(OnlinePaymentService service) {
+        this.service = service;
     }
 
     List<Installment> installments = new ArrayList<>();
     public void processContract(Contract contract, int months) {
 
         double amount = contract.getTotalValue() / months;
-
 
         for (int i=1; i<=months; i++) {
             double a = amount + service.interest(amount,i);
@@ -30,6 +29,9 @@ public class ContractService {
         }
     }
 
+    public List<Installment> list() {
+        return installments;
+    }
 
     @Override
     public String toString() {
