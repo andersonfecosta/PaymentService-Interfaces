@@ -37,8 +37,8 @@ public class Program {
 
         System.out.println();
         System.out.println("Parcelas:");
-        for (int i=0; i<service.list().size(); i++) {
-            System.out.println(service.list().get(i));
+        for (Installment installment : contract.getInstallment()) {
+            System.out.println(installment);
         }
 
     }

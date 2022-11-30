@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ContractService {
 
-    OnlinePaymentService service;
+    private OnlinePaymentService service;
 
     public ContractService(OnlinePaymentService service) {
         this.service = service;
@@ -24,8 +24,7 @@ public class ContractService {
             double a = amount + service.interest(amount,i);
             a = a + service.paymentFee(a);
             LocalDate date = LocalDate.from(contract.getDate().plusMonths(i));
-            Installment installment = new Installment(date,a);
-            installments.add(installment);
+            contract.getInstallment().add(new Installment(date,a));
         }
     }
 
